@@ -18,4 +18,4 @@ jobs:
         with:
           generator: Ninja
       - name: Build the project
-        runs: cmake --build build
+        run: cmake --build build
