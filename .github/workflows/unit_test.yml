@@ -10,7 +10,6 @@ jobs:
         python-version: [3.9]
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/cache@v3
       - name: Checkout the repository
         uses: actions/checkout@v3.5.3
       - name: Configure the project
