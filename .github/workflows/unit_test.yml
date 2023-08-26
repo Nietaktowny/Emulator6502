@@ -1,0 +1,23 @@
+name: Test
+on: [push, pull_request]
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        python-version: [3.9]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/cache@v3
+      - name: Checkout the repository
+        uses: actions/checkout@v3.5.3
+      - name: Configure the project
+        uses: threeal/cmake-action@v1.3.0
+        with:
+          generator: Ninja
+      - name: Build the project
+        runs: cmake --build build
+      - name: Test the project
+        runs: ctest --test-dir build
