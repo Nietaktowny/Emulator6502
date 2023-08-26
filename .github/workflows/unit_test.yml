@@ -18,6 +18,6 @@ jobs:
         with:
           generator: Ninja
       - name: Build the project
-        runs: cmake --build build
+        run: cmake --build build
       - name: Test the project
-        runs: ctest --test-dir build
+        run: ctest --test-dir build
