@@ -1,4 +1,6 @@
+add_subdirectory(test_CPU)
 add_subdirectory(test_main)
+
 include(FetchContent)
 FetchContent_Declare(
         Unity
