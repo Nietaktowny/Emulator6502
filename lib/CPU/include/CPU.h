@@ -12,7 +12,7 @@ typedef uint16_t Word;      ///< Word is 16 bits because PC is 16 bits.
  * This flags and some additional control flags are held in a special status register.
  * Each flag has a single bit within the register.
  */
-struct PS {
+struct processor_status {
     Byte C:1;               ///< The carry flag is set if the last operation caused an overflow from bit 7 of the result or an underflow from bit 0.
     Byte Z:1;               ///< The zero flag is set if the result of the last operation as was zero.
     Byte I:1;               ///< The interrupt disable flag is set if the program has executed a 'Set Interrupt Disable' (SEI) instruction.
@@ -22,6 +22,22 @@ struct PS {
     Byte N:1;               ///< The negative flag is set if the result of the last operation had bit 7 set to a one.
 };
 
+/**
+ * Type describing processor status.
+ */
+typedef struct processor_status processor_status_t;
+
+/**
+ * @brief Resets the CPU.
+ * @note See https://www.c64-wiki.com/wiki/Reset_(Process)
+ *
+ */
 void CPU_reset(void);
+
+Byte* CPU_get_SP(void);
+
+Byte* CPU_get_register(char name);
+
+processor_status_t* CPU_get_PS(void);
 
 #endif //EMULATOR6502_CPU_H
