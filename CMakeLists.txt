@@ -10,6 +10,7 @@ enable_testing()
 
 add_subdirectory(main)
 add_subdirectory(test)
+add_subdirectory(lib)
 
 # Let's tell it a bit about our environment SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin)
 # We declare a variable to select what to build set
