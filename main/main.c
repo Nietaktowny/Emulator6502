@@ -2,6 +2,7 @@
 #include "CPU.h"
 
 int main() {
-    printf("Hello, World!\n");
+    CPU_reset();
+    CPU_execute(2);
     return 0;
 }

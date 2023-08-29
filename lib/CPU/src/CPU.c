@@ -1,6 +1,6 @@
 #include <assert.h>
 #include "CPU.h"
-
+#include <stddef.h>
 
 Word PC;                    ///< The program counter is a 16 bit register which points to the next instruction to be executed.
 Byte SP;                    ///< The stack pointer is an 8 bit register and holds the low 8 bits of the next free location on the stack.
@@ -30,6 +30,19 @@ Byte* CPU_get_register(char name) {
     }
 }
 
+Byte CPU_fetch(uint32_t* cycles) {
+    Byte data = Mem_readByte(PC);
+    PC++;
+    *cycles--;
+    return data;
+}
+
+void CPU_execute(uint32_t cycles) {
+    while (cycles-- > 0) {
+        Byte instr = CPU_fetch(&cycles);
+    }
+}
+
 void CPU_reset(void) {
     //Cycle #0
     SP = 0x00;
@@ -39,4 +52,5 @@ void CPU_reset(void) {
     assert(SP);
     PS.C = PS.D = PS.BC = PS.I = PS.N = PS.O = PS.Z = 0;
     A = X = Y = 0;
+    Mem_init();
 }

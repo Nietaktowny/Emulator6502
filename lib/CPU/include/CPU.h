@@ -1,7 +1,7 @@
-#pragma once
 #ifndef EMULATOR6502_CPU_H
 #define EMULATOR6502_CPU_H
 #include <stdint.h>
+#include "Memory.h"
 
 typedef uint8_t Byte;       ///< This type is used for 8 bits registers and values.
 typedef uint16_t Word;      ///< Word is 16 bits because PC is 16 bits.
@@ -34,10 +34,25 @@ typedef struct processor_status processor_status_t;
  */
 void CPU_reset(void);
 
+/**
+ * @brief Used to get Stack Pointer.
+ * @return Address value of Stack Pointer.
+ */
 Byte* CPU_get_SP(void);
 
+/**
+ * @brief Used to get register based on name passed as argument.
+ * @param name Name of register to get.
+ * @return Pointer to register.
+ */
 Byte* CPU_get_register(char name);
 
+/**
+ * @brief Get pointer to Processor Status.
+ * @return Pointer to Processor Status struct.
+ */
 processor_status_t* CPU_get_PS(void);
+
+void CPU_execute(uint32_t cycles);
 
 #endif //EMULATOR6502_CPU_H
